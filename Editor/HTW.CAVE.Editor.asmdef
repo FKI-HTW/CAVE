@@ -1,0 +1,19 @@
+{
+    "name": "HTW.CAVE.Editor",
+    "rootNamespace": "HTW.CAVE",
+    "references": [
+        "GUID:2287a3dad6fc5f145a5e01dfce3b75a3",
+        "GUID:9a21d24c14dd6d54f881a717660cef63"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

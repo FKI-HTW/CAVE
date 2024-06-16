@@ -1,0 +1,16 @@
+{
+  "name": "Microsoft.Kinect.StandardAssets.Editor",
+  "references": [
+    "Microsoft.Kinect.StandardAssets"
+  ],
+  "optionalUnityReferences": [],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": []
+}

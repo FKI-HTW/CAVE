@@ -1,0 +1,16 @@
+{
+    "name": "HTW.CAVE.Runtime",
+    "rootNamespace": "HTW.CAVE",
+    "references": [
+        "GUID:9a21d24c14dd6d54f881a717660cef63"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
