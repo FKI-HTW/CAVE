@@ -1,0 +1,24 @@
+{
+  "name": "de.htw.cave",
+  "displayName": "HTW CAVE",
+  "version": "1.0.0",
+  "unity": "2022.3",
+  "description": "A immersive virtual reality environment with Microsoft Kinect 2.0 support and network calibration.",
+  "keywords": [
+    "vr",
+    "xr",
+    "cave"
+  ],
+  "samples": [
+    {
+      "displayName": "Example CAVE Setup",
+      "description": "Example CAVE Setup",
+      "path": "Samples~/ExampleSetup"
+    }
+  ],
+  "author": {
+    "name": "HTW Berlin",
+    "email": "centis-htw-bounces@lists.htw-berlin.de",
+    "url": "https://fki.htw-berlin.de/centis/"
+  }
+}
