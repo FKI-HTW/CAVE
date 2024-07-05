@@ -1,10 +1,14 @@
 {
-  "name": "de.htw.cave",
-  "displayName": "HTW CAVE",
-  "version": "1.0.0",
+  "name": "de.htw-berlin.cave",
+  "displayName": "CAVE",
+  "version": "1.0.1",
   "unity": "2022.3",
   "description": "A immersive virtual reality environment with Microsoft Kinect 2.0 support and network calibration.",
+  "documentationUrl": "https://github.com/FKI-HTW/CAVE/blob/main/Assets/CAVE/README.md",
+  "changelogUrl": "https://github.com/FKI-HTW/CAVE/blob/main/Assets/CAVE/CHANGELOG.md",
+  "licensesUrl": "https://github.com/FKI-HTW/CAVE/blob/main/Assets/CAVE/LICENSE.md",
   "keywords": [
+    "Unity Package",
     "vr",
     "xr",
     "cave"
