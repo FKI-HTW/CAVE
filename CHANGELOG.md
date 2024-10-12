@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 1.1.0
+* Added CAVETools project as sample
+
 ## Version 1.0.0
 
 Requires: Unity 2022.3
