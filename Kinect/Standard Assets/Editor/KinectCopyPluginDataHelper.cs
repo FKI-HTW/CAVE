@@ -5,14 +5,14 @@ using System.IO;
 
 public static class KinectCopyPluginDataHelper
 {
-    private const string DataDirSuffix = "_Data";
-    private const string PluginsDirName = "Plugins";
-    private const string PackageName = "de.htw.cave";
+    private const string DATA_DIR_SUFFIX = "_Data";
+    private const string PLUGINS_DIR_NAME = "Plugins";
+    private const string PACKAGE_NAME = "de.htw-berlin.cave";
 
-    private static readonly string packagesDir = Path.Combine(Application.dataPath, "..", "Packages");
-    private static readonly string kinectPluginPath = Path.Combine("Kinect", PluginsDirName);
+    private static readonly string PackagesDir = Path.Combine(Application.dataPath, "../Library/PackageCache");
+    private static readonly string KinectPluginPath = Path.Combine("Kinect", PLUGINS_DIR_NAME);
 
-    private static Dictionary<BuildTarget, string> TargetToDirName = new()
+    private static readonly Dictionary<BuildTarget, string> TargetToDirName = new()
     {
         {BuildTarget.StandaloneWindows, "x86"},
         {BuildTarget.StandaloneWindows64, "x86_64"}
@@ -23,7 +23,7 @@ public static class KinectCopyPluginDataHelper
         if (!TargetToDirName.TryGetValue (target, out var subDirName))
             return;
         
-        var packageDir = FindPackageDirectory(packagesDir);
+        var packageDir = FindPackageDirectory(PackagesDir);
         if (packageDir == null)
             throw PackageDirectoryNotFoundException();
 
@@ -31,10 +31,10 @@ public static class KinectCopyPluginDataHelper
         var buildName = Path.GetFileNameWithoutExtension(buildTargetPath);
         var targetDir = Directory.GetParent(buildTargetPath);
         var separator = Path.DirectorySeparatorChar;
-        var kinectDir = Path.Combine(packageDir, kinectPluginPath);
+        var kinectDir = Path.Combine(packageDir, KinectPluginPath);
 
-        var buildDataDir = targetDir.FullName + separator + buildName + DataDirSuffix + separator;
-        var tgtPluginsDir = buildDataDir + separator + PluginsDirName + separator + subDirToCopy + separator;
+        var buildDataDir = targetDir.FullName + separator + buildName + DATA_DIR_SUFFIX + separator;
+        var tgtPluginsDir = buildDataDir + separator + PLUGINS_DIR_NAME + separator + subDirToCopy + separator;
         var srcPluginsDir = Path.Combine(kinectDir, subDirName, subDirToCopy);
 
         CopyAll(new(srcPluginsDir), new(tgtPluginsDir));
@@ -73,16 +73,15 @@ public static class KinectCopyPluginDataHelper
     
     private static string FindPackageDirectory(string path)
     {
-        // Version control systems add the branch name to the package name sometimes.
-        // So if the package cannot be found look for the substring.
-			
-        var packageDir = new DirectoryInfo(Path.Combine(path, PackageName));
+        var packageDir = new DirectoryInfo(Path.Combine(path, PACKAGE_NAME));
 
         if (packageDir.Exists)
             return packageDir.FullName;
 
+        // Version control systems add the branch name to the package name sometimes.
+        // So if the package cannot be found look for the substring.
         foreach (var dir in Directory.GetDirectories(path))
-            if (Path.GetDirectoryName(dir).Contains(PackageName))
+            if (dir.Contains(PACKAGE_NAME))
                 return dir;
 			
         return null;
