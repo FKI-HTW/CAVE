@@ -13,9 +13,9 @@ public class KinectPostBuildPluginFix : IPostprocessBuildWithReport
         FixBuildPluginSubdirectory(report.summary.outputPath, report.summary.platform);
     }
     
-    private const string DataDirSuffix = "_Data";
-    private const string PluginsDirName = "Plugins";
-    private static Dictionary<BuildTarget, string> TargetToDirName = new()
+    private const string DATA_DIR_SUFFIX = "_Data";
+    private const string PLUGINS_DIR_NAME = "Plugins";
+    private static readonly Dictionary<BuildTarget, string> TargetToDirName = new()
     {
         {BuildTarget.StandaloneWindows, "x86"},
         {BuildTarget.StandaloneWindows64, "x86_64"}
@@ -36,15 +36,20 @@ public class KinectPostBuildPluginFix : IPostprocessBuildWithReport
             return;
 
         var buildName = Path.GetFileNameWithoutExtension(executable);
-        var dataPath = Path.Combine(Path.GetDirectoryName(executable), buildName + DataDirSuffix);
+        var dataPath = Path.Combine(Path.GetDirectoryName(executable), buildName + DATA_DIR_SUFFIX);
         
         try
         {
-            var pluginsDir = Path.Combine(dataPath, PluginsDirName);
+            var pluginsDir = Path.Combine(dataPath, PLUGINS_DIR_NAME);
             var plugins = Directory.GetFiles(Path.Combine(pluginsDir, subDirName));
 
             foreach (var plugin in plugins)
-                File.Move(plugin, Path.Combine(pluginsDir, Path.GetFileName(plugin)));
+            {
+                var destFile = Path.Combine(pluginsDir, Path.GetFileName(plugin));
+                if (File.Exists(destFile))
+                    File.Delete(destFile);
+                File.Move(plugin, destFile);
+            }
         } catch (DirectoryNotFoundException) {}
     }
 }
